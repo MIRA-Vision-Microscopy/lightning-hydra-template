@@ -1,4 +1,5 @@
 {
     "project_name": "lightning-hydra-template",
-    "author": "MIRAvision"
+    "author": "MIRAvision",
+    "template_version": "0.1.0"
 }
