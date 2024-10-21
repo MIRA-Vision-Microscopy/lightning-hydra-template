@@ -37,7 +37,7 @@ Inside the project directory:
 poetry init
 
 # install packages
-poetry install --no-root
+poetry install 
 ```
 
 <br>
