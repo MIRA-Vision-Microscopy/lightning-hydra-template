@@ -20,8 +20,8 @@ What it does
 Inside the project directory:
 ```bash
 
-# initialize poetry environment
-poetry init
+# select suitable Python environment
+poetry env use /full/path/to/python
 
 # install packages
 poetry install
