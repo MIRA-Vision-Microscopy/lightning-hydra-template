@@ -3,7 +3,7 @@
 
 # Inspired by the sktime library:
 # https://github.com/alan-turing-institute/sktime/blob/main/.github/workflows/test.yml
-
+{% raw %}
 name: Code Quality PR
 
 on:
@@ -34,3 +34,4 @@ jobs:
         uses: pre-commit/action@v2.0.3
         with:
           extra_args: --files ${{ steps.file_changes.outputs.files}}
+{% endraw %}
