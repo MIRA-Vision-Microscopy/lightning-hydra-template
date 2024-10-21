@@ -16,44 +16,32 @@
 [![contributors](https://img.shields.io/github/contributors/ashleve/lightning-hydra-template.svg)](https://github.com/ashleve/lightning-hydra-template/graphs/contributors)
 
 A clean template to kickstart your deep learning project 🚀⚡🔥<br>
-Click on [<kbd>Use this template</kbd>](https://github.com/ashleve/lightning-hydra-template/generate) to initialize new repository.
 
 _Suggestions are always welcome!_
 
 </div>
 
+This template was adapted from [this repository](https://github.com/ashleve/lightning-hydra-template) as a template for machine learning projects at MIRAvision. The template contains an example with MNIST classification.
 <br>
 
-## 📌  Introduction
+## 🚀  Quickstart
 
-**Why you might want to use it:**
+```bash
+# get template using cookiecutter
+cookiecutter https://github.com/MIRA-Vision-Microscopy/lightning-hydra-template
+```
 
-✅ Save on boilerplate <br>
-Easily add new models, datasets, tasks, experiments, and train on different accelerators, like multi-GPU, TPU or SLURM clusters.
+Inside the project directory:
+```bash
+# initialize poetry environment
+poetry init
 
-✅ Education <br>
-Thoroughly commented. You can use this repo as a learning resource.
-
-✅ Reusability <br>
-Collection of useful MLOps tools, configs, and code snippets. You can use this repo as a reference for various utilities.
-
-**Why you might not want to use it:**
-
-❌ Things break from time to time <br>
-Lightning and Hydra are still evolving and integrate many libraries, which means sometimes things break. For the list of currently known problems visit [this page](https://github.com/ashleve/lightning-hydra-template/labels/bug).
-
-❌ Not adjusted for data engineering <br>
-Template is not really adjusted for building data pipelines that depend on each other. It's more efficient to use it for model prototyping on ready-to-use data.
-
-❌ Overfitted to simple use case <br>
-The configuration setup is built with simple lightning training in mind. You might need to put some effort to adjust it for different use cases, e.g. lightning fabric.
-
-❌ Might not support your workflow <br>
-For example, you can't resume hydra-based multirun or hyperparameter search.
-
-> **Note**: _Keep in mind this is unofficial community project._
+# install packages
+poetry install --no-root
+```
 
 <br>
+
 
 ## Main Technologies
 
@@ -127,42 +115,12 @@ The directory structure of new project looks like this:
 ├── .gitignore                <- List of files ignored by git
 ├── .pre-commit-config.yaml   <- Configuration of pre-commit hooks for code formatting
 ├── .project-root             <- File for inferring the position of project root directory
-├── environment.yaml          <- File for installing conda environment
 ├── Makefile                  <- Makefile with commands like `make train` or `make test`
 ├── pyproject.toml            <- Configuration options for testing and linting
-├── requirements.txt          <- File for installing python dependencies
-├── setup.py                  <- File for installing project as a package
 └── README.md
 ```
 
 <br>
-
-## 🚀  Quickstart
-
-```bash
-# clone project
-git clone https://github.com/ashleve/lightning-hydra-template
-cd lightning-hydra-template
-
-# [OPTIONAL] create conda environment
-conda create -n myenv python=3.9
-conda activate myenv
-
-# install pytorch according to instructions
-# https://pytorch.org/get-started/
-
-# install requirements
-pip install -r requirements.txt
-```
-
-Template contains example with MNIST classification.<br>
-When running `python src/train.py` you should see something like this:
-
-<div align="center">
-
-![](https://github.com/ashleve/lightning-hydra-template/blob/resources/terminal.png)
-
-</div>
 
 ## ⚡  Your Superpowers
 
@@ -490,25 +448,6 @@ ValueError: Specify tags before launching a multirun!
 
 </details>
 
-<br>
-
-## ❤️  Contributions
-
-This project exists thanks to all the people who contribute.
-
-![Contributors](https://readme-contributors.now.sh/ashleve/lightning-hydra-template?extension=jpg&width=400&aspectRatio=1)
-
-Have a question? Found a bug? Missing a specific feature? Feel free to file a new issue, discussion or PR with respective title and description.
-
-Before making an issue, please verify that:
-
-- The problem still exists on the current `main` branch.
-- Your python dependencies are updated to recent versions.
-
-Suggestions for improvements are always welcome!
-
-<br>
-
 ## How It Works
 
 All PyTorch Lightning modules are dynamically instantiated from module paths specified in config. Example model config:
@@ -672,6 +611,14 @@ logger:
    ```bash
    python src/train.py experiment=experiment_name.yaml
    ```
+
+When running `python src/train.py` you should see something like this:
+
+<div align="center">
+
+![](https://github.com/ashleve/lightning-hydra-template/blob/resources/terminal.png)
+
+</div>
 
 **Experiment design**
 
@@ -893,37 +840,6 @@ def on_train_start(self):
 <br>
 
 ## Best Practices
-
-<details>
-<summary><b>Use Miniconda</b></summary>
-
-It's usually unnecessary to install full anaconda environment, miniconda should be enough (weights around 80MB).
-
-Big advantage of conda is that it allows for installing packages without requiring certain compilers or libraries to be available in the system (since it installs precompiled binaries), so it often makes it easier to install some dependencies e.g. cudatoolkit for GPU support.
-
-It also allows you to access your environments globally which might be more convenient than creating new local environment for every project.
-
-Example installation:
-
-```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
-```
-
-Update conda:
-
-```bash
-conda update -n base -c defaults conda
-```
-
-Create new conda environment:
-
-```bash
-conda create -n myenv python=3.10
-conda activate myenv
-```
-
-</details>
 
 <details>
 <summary><b>Use automatic code formatting</b></summary>
@@ -1182,35 +1098,7 @@ Other useful repositories:
 
 </details>
 
-<br>
 
-## License
-
-Lightning-Hydra-Template is licensed under the MIT License.
-
-```
-MIT License
-
-Copyright (c) 2021 ashleve
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
 
 <br>
 <br>
@@ -1223,14 +1111,12 @@ ______________________________________________________________________
 
 <div align="center">
 
-# Your Project Name
+# Project: {{cookiecutter.project_name}}
 
 <a href="https://pytorch.org/get-started/locally/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a>
 <a href="https://pytorchlightning.ai/"><img alt="Lightning" src="https://img.shields.io/badge/-Lightning-792ee5?logo=pytorchlightning&logoColor=white"></a>
 <a href="https://hydra.cc/"><img alt="Config: Hydra" src="https://img.shields.io/badge/Config-Hydra-89b8cd"></a>
 <a href="https://github.com/ashleve/lightning-hydra-template"><img alt="Template" src="https://img.shields.io/badge/-Lightning--Hydra--Template-017F2F?style=flat&logo=github&labelColor=gray"></a><br>
-[![Paper](http://img.shields.io/badge/paper-arxiv.1001.2234-B31B1B.svg)](https://www.nature.com/articles/nature14539)
-[![Conference](http://img.shields.io/badge/AnyConference-year-4b44ce.svg)](https://papers.nips.cc/paper/2020)
 
 </div>
 
@@ -1238,38 +1124,16 @@ ______________________________________________________________________
 
 What it does
 
+
 ## Installation
-
-#### Pip
-
+Inside the project directory:
 ```bash
-# clone project
-git clone https://github.com/YourGithubName/your-repo-name
-cd your-repo-name
 
-# [OPTIONAL] create conda environment
-conda create -n myenv python=3.9
-conda activate myenv
+# initialize poetry environment
+poetry init
 
-# install pytorch according to instructions
-# https://pytorch.org/get-started/
-
-# install requirements
-pip install -r requirements.txt
-```
-
-#### Conda
-
-```bash
-# clone project
-git clone https://github.com/YourGithubName/your-repo-name
-cd your-repo-name
-
-# create conda environment and install dependencies
-conda env create -f environment.yaml -n myenv
-
-# activate conda environment
-conda activate myenv
+# install packages
+poetry install
 ```
 
 ## How to run
