@@ -34,6 +34,8 @@ cookiecutter https://github.com/MIRA-Vision-Microscopy/lightning-hydra-template
 Inside the project directory:
 ```bash
 # select suitable Python environment
+poetry env use python3.x
+# or
 poetry env use /full/path/to/python
 
 # install packages
