@@ -32,7 +32,27 @@ authors = ["Frauke Wilm"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.10"
+pytorch = "2.*"
+torchvision = "0.*"
+lightning = "2.*"
+torchmetrics = "0.*"
+hydra-core = "1.*"
+rich = "13.*"
+pre-commit = "3.*"
+pytest = "7.*"
+
+# Pip dependencies listed in the YAML file
+hydra-optuna-sweeper = "*"
+hydra-colorlog = "*"
+rootutils = "*"
+
+# Optional dependencies, these can be added if needed
+# wandb = "*"
+# neptune-client = "*"
+# mlflow = "*"
+# comet-ml = "*"
+# aim = ">=3.16.2"
 
 
 [build-system]
