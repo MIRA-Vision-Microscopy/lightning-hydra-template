@@ -25,10 +25,10 @@ exclude_lines = [
 ]
 
 [tool.poetry]
-name = "lightning-hydra-template"
+name = "{{cookiecutter.project_name}}"
 version = "0.1.0"
 description = ""
-authors = ["Frauke Wilm"]
+authors = ["{{cookiecutter.author}}"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
