@@ -32,7 +32,7 @@ poetry env use /full/path/to/python
 
 Install packages
 ```bash
-poetry install 
+poetry install --no-root
 ```
 
 ## How to run
