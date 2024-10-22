@@ -26,8 +26,8 @@ This template was adapted from [this repository](https://github.com/ashleve/ligh
 
 ## 🚀  Quickstart
 
+Get template using cookiecutter
 ```bash
-# get template using cookiecutter
 cookiecutter https://github.com/MIRA-Vision-Microscopy/lightning-hydra-template
 ```
 
