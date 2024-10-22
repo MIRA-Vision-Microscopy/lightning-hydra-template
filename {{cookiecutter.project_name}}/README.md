@@ -17,16 +17,22 @@ What it does
 
 
 ## Installation
-Inside the project directory:
-```bash
 
-# select suitable Python environment
+If you are using pyenv for venv management, set local Python version
+```bash
+pyenv local 3.x
+```
+
+Select  Python environment
+```bash
 poetry env use python3.x
 # or
 poetry env use /full/path/to/python
+```
 
-# install packages
-poetry install
+Install packages
+```bash
+poetry install 
 ```
 
 ## How to run
