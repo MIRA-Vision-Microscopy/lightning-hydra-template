@@ -31,14 +31,22 @@ This template was adapted from [this repository](https://github.com/ashleve/ligh
 cookiecutter https://github.com/MIRA-Vision-Microscopy/lightning-hydra-template
 ```
 
-Inside the project directory:
+### Inside the project directory:
+
+If you are using pyenv for venv management, set local Python version
 ```bash
-# select suitable Python environment
+pyenv local 3.x
+```
+
+Select  Python environment
+```bash
 poetry env use python3.x
 # or
 poetry env use /full/path/to/python
+```
 
-# install packages
+Install packages
+```bash
 poetry install 
 ```
 
