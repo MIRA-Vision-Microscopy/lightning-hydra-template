@@ -22,6 +22,7 @@ jobs:
           # pip install -r requirements.txt
           cd {{cookiecutter.project_name}}
           poetry install --no-root
+          source `poetry env info --path`/bin/activate
           python src/train.py experiment=example.yaml
       - name: Write CML report
         env:
