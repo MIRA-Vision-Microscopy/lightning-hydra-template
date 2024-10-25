@@ -18,10 +18,11 @@ jobs:
       - name: Train model
         run: |
           # Your ML workflow goes here
+          pip install poetry
           # pip install -r requirements.txt
           cd {{cookiecutter.project_name}}
           poetry install --no-root
-          python train.py experiment=example.yaml
+          python src/train.py experiment=example.yaml
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
