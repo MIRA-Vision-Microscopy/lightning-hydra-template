@@ -124,6 +124,10 @@ def main(cfg: DictConfig) -> Optional[float]:
         metric_dict=metric_dict, metric_name=cfg.get("optimized_metric")
     )
 
+    with open("metrics.txt", "w") as outfile:
+        for key, value in metric_dict.items():
+            outfile.write(f"{key}: ".upper() + str(value.cpu().numpy().round(4)) + "\n")
+
     # return optimized metric
     return metric_value
 
