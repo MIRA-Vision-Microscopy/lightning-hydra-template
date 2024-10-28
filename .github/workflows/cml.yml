@@ -30,6 +30,7 @@ jobs:
         run: |
           # Post reports as comments in GitHub PRs
           echo "## Model metrics" >> report.md
-          cat src/metrics.log >> report.md
-          rm src/metrics.log
-          cml comment create report.md
+          ls
+          #cat src/metrics.log >> report.md
+          #rm src/metrics.log
+          #cml comment create report.md
