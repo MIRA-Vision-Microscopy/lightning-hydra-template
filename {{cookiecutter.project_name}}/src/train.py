@@ -7,6 +7,7 @@ import torch
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
 from lightning.pytorch.loggers import Logger
 from omegaconf import DictConfig
+import numpy as np
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # ------------------------------------------------------------------------------------ #
@@ -106,7 +107,7 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
 
 
 @hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")
-def main(cfg: DictConfig) -> Optional[float]:
+def main(cfg: DictConfig) -> Any:
     """Main entry point for training.
 
     :param cfg: DictConfig configuration composed by Hydra.
@@ -118,14 +119,21 @@ def main(cfg: DictConfig) -> Optional[float]:
 
     # train the model
     metric_dict, _ = train(cfg)
+    metrics_numpy = {key: np.round(value.item(), 4) for key, value in metric_dict.items()}
 
     # safely retrieve metric value for hydra-based hyperparameter optimization
     metric_value = get_metric_value(
         metric_dict=metric_dict, metric_name=cfg.get("optimized_metric")
     )
 
+    if(cfg.extras.export_metrics):
+        import json
+        
+        with open('metrics.json', 'w') as file:
+            json.dump(metrics_numpy, file)
+
     # return optimized metric
-    return metric_value
+    return metric_value if metric_value else metrics_numpy
 
 
 if __name__ == "__main__":

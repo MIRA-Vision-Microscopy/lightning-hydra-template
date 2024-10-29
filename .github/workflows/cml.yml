@@ -1,0 +1,47 @@
+name: cml-train-cifar
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # optionally use a convenient Ubuntu LTS + DVC + CML image
+    # container: ghcr.io/iterative/cml:0-dvc2-base1
+    steps:
+      - uses: actions/checkout@v3
+      # may need to setup NodeJS & Python3 on e.g. self-hosted
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '16'
+      # - uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.x'
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        run: |
+          # Your ML workflow goes here
+          pip install poetry
+          cd {{cookiecutter.project_name}}
+          poetry install --no-root
+          source `poetry env info --path`/bin/activate
+          cd ../
+          python {{cookiecutter.project_name}}/src/train.py experiment=ci.yaml
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+      - name: Write CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Post reports as comments in GitHub PRs
+          echo "## Model metrics" >> report.md
+          echo "| Metric | Value |" >> report.md
+          echo "|--------|-------|" >> report.md
+
+          # Read values from metrics.json and format as a table
+          if command -v jq &> /dev/null; then
+            jq -r 'to_entries | .[] | "| \(.key) | \(.value) |"' metrics.json >> report.md
+          else
+            echo "jq is not installed. Cannot parse metrics.json." >> report.md
+          fi
+          rm metrics.json
+          cml comment create report.md
