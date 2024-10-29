@@ -7,6 +7,7 @@ import torch
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
 from lightning.pytorch.loggers import Logger
 from omegaconf import DictConfig
+import numpy as np
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # ------------------------------------------------------------------------------------ #
@@ -118,7 +119,7 @@ def main(cfg: DictConfig) -> Any:
 
     # train the model
     metric_dict, _ = train(cfg)
-    metrics_numpy = {key: value.item() for key, value in metric_dict.items()}
+    metrics_numpy = {key: np.round(value.item(), 4) for key, value in metric_dict.items()}
 
     # safely retrieve metric value for hydra-based hyperparameter optimization
     metric_value = get_metric_value(
