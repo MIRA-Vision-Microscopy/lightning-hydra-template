@@ -19,19 +19,29 @@ jobs:
         run: |
           # Your ML workflow goes here
           pip install poetry
-          # pip install -r requirements.txt
           cd {{cookiecutter.project_name}}
           poetry install --no-root
           source `poetry env info --path`/bin/activate
           cd ../
           python {{cookiecutter.project_name}}/src/train.py experiment=ci.yaml
-          
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Post reports as comments in GitHub PRs
           echo "## Model metrics" >> report.md
-          cat metrics.json >> report.md
+          echo "| Metric | Value |" >> report.md
+          echo "|--------|-------|" >> report.md
+
+          # Read values from metrics.json and format as a table
+          if command -v jq &> /dev/null; then
+            jq -r 'to_entries | .[] | "| \(.key) | \(.value) |"' metrics.json >> report.md
+          else
+            echo "jq is not installed. Cannot parse metrics.json." >> report.md
+          fi
           rm metrics.json
           cml comment create report.md
