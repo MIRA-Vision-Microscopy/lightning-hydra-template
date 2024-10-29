@@ -30,6 +30,8 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Post reports as comments in GitHub PRs
+          echo "Current directory before writing report:"
+          pwd  # Print working directory before writing report
           echo "## Model metrics" >> report.md
           cat metrics.txt >> report.md
           rm metrics.txt
