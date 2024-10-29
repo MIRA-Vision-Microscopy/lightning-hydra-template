@@ -23,8 +23,8 @@ jobs:
           cd {{cookiecutter.project_name}}
           poetry install --no-root
           source `poetry env info --path`/bin/activate
-          #python src/train.py experiment=example.yaml
-          OUTPUT=$(python src/train.py experiment=example.yaml)
+          cd ../
+          python {{cookiecutter.project_name}}/src/train.py experiment=ci.yaml
           
       - name: Write CML report
         env:
@@ -32,5 +32,6 @@ jobs:
         run: |
           # Post reports as comments in GitHub PRs
           echo "## Model metrics" >> report.md
-          echo $OUTPUT >> report.md
+          cat metrics.json >> report.md
+          rm metrics.json
           cml comment create report.md
