@@ -51,6 +51,9 @@ rootutils = "*"
 # mlflow = "*"
 # comet-ml = "*"
 # aim = ">=3.16.2"
+scikit-learn = "^1.6.1"
+albumentations = "^2.0.0"
+wandb = "^0.19.3"
 
 
 [build-system]
