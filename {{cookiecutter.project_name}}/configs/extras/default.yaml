@@ -6,6 +6,3 @@ enforce_tags: True
 
 # pretty print config tree at the start of the run using Rich library
 print_config: True
-
-# export metrics as json for CI
-export_metrics: False

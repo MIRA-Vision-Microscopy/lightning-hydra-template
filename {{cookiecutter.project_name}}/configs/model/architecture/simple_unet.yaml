@@ -1,0 +1,2 @@
+_target_: src.models.architectures.segmentation.simple_unet.SimpleUNet
+n_class: 10

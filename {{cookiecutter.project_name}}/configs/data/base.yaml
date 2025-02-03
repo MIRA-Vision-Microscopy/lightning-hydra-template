@@ -1,0 +1,17 @@
+defaults:
+  - _self_
+  - /data/augmentation@augmentation_train: base
+  - /data/augmentation@augmentation_val: base
+  - /data/augmentation@augmentation_test: base
+  - data_wrapper: dummy
+  - location_handler: local
+  - /data/sampler@sampler_train: full_image_sampler
+  - /data/sampler@sampler_val: full_image_sampler
+  - /data/sampler@sampler_test: full_image_sampler
+
+_target_: src.data.base_datamodule.BaseDataModule
+data_dir: ${paths.data_dir}
+batch_size: 32
+patch_size: 512
+num_workers: 0
+pin_memory: False

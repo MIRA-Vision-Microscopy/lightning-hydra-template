@@ -1,0 +1,12 @@
+defaults:
+  - _self_
+  - architecture: simple_unet
+  - loss: CE
+  - /model/metric@metrics_train: dice
+  - /model/metric@metrics_val: dice
+  - /model/metric@metrics_test: dice
+  - optimizer: sgd
+  - scheduler: plateau
+
+
+_target_: src.models.base_module.BaseModule

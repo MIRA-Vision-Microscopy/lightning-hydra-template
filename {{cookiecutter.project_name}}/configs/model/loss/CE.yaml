@@ -1,0 +1,2 @@
+_target_: src.models.losses.ce.CELoss
+_partial_: true

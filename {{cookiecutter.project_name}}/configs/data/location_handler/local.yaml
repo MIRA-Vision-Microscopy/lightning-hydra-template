@@ -1,0 +1,2 @@
+_target_: src.data.location_handler.local.LocalLocationHandler
+data_dir: ${paths.data_dir}

@@ -1,0 +1,2 @@
+_target_: src.data.data_wrapper.dummy.DummyDataWrapper
+in_memory: False

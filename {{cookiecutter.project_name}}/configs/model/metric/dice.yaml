@@ -1,0 +1,2 @@
+_target_: src.models.metrics.dice.DiceMetric
+_partial_: true
