@@ -1,13 +1,11 @@
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, List
 
 import hydra
 import lightning as L
 import rootutils
-import torch
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
 from lightning.pytorch.loggers import Logger
 from omegaconf import DictConfig
-import numpy as np
 
 rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 # ------------------------------------------------------------------------------------ #
@@ -30,7 +28,6 @@ rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 from src.utils import (
     RankedLogger,
     extras,
-    get_metric_value,
     instantiate_callbacks,
     instantiate_loggers,
     log_hyperparameters,

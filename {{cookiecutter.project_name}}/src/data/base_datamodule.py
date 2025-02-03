@@ -6,7 +6,6 @@ from src.data.location_handler.base import BaseLocationHandler
 from src.data.data_wrapper.base import BaseDataWrapper
 from src.data.sampler.base import BaseSampler
 from src.data.augmentation.base import BaseAugmentations
-import torch
 
 
 class BaseDataModule(LightningDataModule):
