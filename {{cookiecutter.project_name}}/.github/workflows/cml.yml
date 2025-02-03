@@ -21,7 +21,7 @@ jobs:
           pip install poetry
           poetry install --no-root
           source `poetry env info --path`/bin/activate
-          python src/train.py experiment=ci.yaml
+          python src/train.py experiment=dummy.yaml
       - name: Install jq
         run: |
           sudo apt-get update

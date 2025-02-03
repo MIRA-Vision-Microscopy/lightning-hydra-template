@@ -17,7 +17,7 @@ tags: ["dummy", "simple_unet"]
 seed: 42
 
 trainer:
-  max_epochs: 100
+  max_epochs: 2
   gradient_clip_val: 0.5
 
 model:
