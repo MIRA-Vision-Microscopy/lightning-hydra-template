@@ -2,6 +2,7 @@ import torch
 from typing import List, Tuple
 from torchmetrics import Metric
 
+
 class BaseMetricContainer(torch.nn.Module):
     """Base container for metrics.
 
@@ -15,17 +16,18 @@ class BaseMetricContainer(torch.nn.Module):
         super().__init__()
         """Initialize an empty metric container."""
         self.stage = stage
-        self.metrics: List[Tuple[str, str, Metric]] = []
+        self.metrics: List[Tuple[str, str, str, Metric]] = []
 
-    def add_metric(self, name: str, batch_key: str, metric: Metric) -> None:
+    def add_metric(self, name: str, prediction_key: str, batch_key: str, metric: Metric) -> None:
         """Add a metric to the container.
 
         Args:
             name (str): The name of the metric
+            prediction_key (str): The key to access the relevant data in the prediction
             batch_key (str): The key to access the relevant data in the batch
             metric (torchmetrics.Metric): The actual metric instance
         """
-        self.metrics.append((name, batch_key, metric))
+        self.metrics.append((name, prediction_key, batch_key, metric))
         self.add_module(name, metric)
 
     def update(self, prediction, batch) -> None:

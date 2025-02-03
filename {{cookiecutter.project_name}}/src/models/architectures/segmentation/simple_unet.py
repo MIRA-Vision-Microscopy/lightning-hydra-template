@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 
+
 def double_conv(in_channels, out_channels):
     return nn.Sequential(
         nn.Conv2d(in_channels, out_channels, 3, padding=1),
@@ -28,6 +29,8 @@ class SimpleUNet(nn.Module):
         self.dconv_up1 = double_conv(128 + 64, 64)
         
         self.conv_last = nn.Conv2d(64, n_class, 1)
+
+        self.softmax = nn.Softmax(dim=1)
         
         
     def forward(self, x):
@@ -57,4 +60,4 @@ class SimpleUNet(nn.Module):
         
         out = self.conv_last(x)
         
-        return out
+        return {"logits": out, "probs": self.softmax(out)}
