@@ -6,7 +6,7 @@
 defaults:
   - override /data: base
   - override /model: base
-  - override /trainer: gpu
+  - override /trainer: default
   - override /callbacks: default
 
 # all parameters below will be merged with parameters from default configurations set above
