@@ -1,8 +1,9 @@
-from typing import Any, List
+from typing import Any, List, Tuple, Dict
 
 import hydra
 import lightning as L
 import rootutils
+import numpy as np
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
 from lightning.pytorch.loggers import Logger
 from omegaconf import DictConfig
@@ -32,6 +33,7 @@ from src.utils import (
     instantiate_loggers,
     log_hyperparameters,
     task_wrapper,
+    get_metric_value
 )
 
 log = RankedLogger(__name__, rank_zero_only=True)
