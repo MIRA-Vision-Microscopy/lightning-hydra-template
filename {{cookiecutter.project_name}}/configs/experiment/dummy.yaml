@@ -26,3 +26,6 @@ model:
 
 data:
   batch_size: 8
+
+extras:
+  export_metrics: True
