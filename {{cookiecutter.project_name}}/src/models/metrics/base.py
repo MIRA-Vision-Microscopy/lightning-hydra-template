@@ -36,8 +36,8 @@ class BaseMetricContainer(torch.nn.Module):
         Args:
             batch: The current batch of data
         """
-        for name, batch_key, metric in self.metrics:
-            metric.update(prediction, batch[batch_key].long())
+        for name, prediction_key, batch_key, metric in self.metrics:
+            metric.update(prediction[prediction_key], batch[batch_key].long())
 
     def compute(self) -> dict:
         """Compute all metrics.
@@ -45,9 +45,9 @@ class BaseMetricContainer(torch.nn.Module):
         Returns:
             dict: A dictionary containing all metric results with their names as keys
         """
-        return {f"{self.stage}/{name}": metric.compute().cpu() for name, _, metric in self.metrics}
+        return {f"{self.stage}/{name}": metric.compute().cpu() for name, _, _, metric in self.metrics}
 
     def reset(self) -> None:
         """Reset all metrics."""
-        for _, _, metric in self.metrics:
+        for _, _, _, metric in self.metrics:
             metric.reset()
