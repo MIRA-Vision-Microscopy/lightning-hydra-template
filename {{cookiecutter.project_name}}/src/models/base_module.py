@@ -13,7 +13,7 @@ class BaseModule(LightningModule):
                  metrics_val:   BaseMetricContainer, 
                  metrics_test:  BaseMetricContainer,
                  optimizer: torch.optim.Optimizer,
-                 scheduler: torch.optim.lr_scheduler,):
+                 scheduler: torch.optim.lr_scheduler):
         super().__init__()
 
         # this line allows to access init params with 'self.hparams' attribute
